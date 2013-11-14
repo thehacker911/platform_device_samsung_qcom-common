@@ -398,11 +398,9 @@ case "$target" in
      ;;
 esac
 
-# Install AdrenoTest.apk if not already installed
-if [ -f /data/prebuilt/AdrenoTest.apk ]; then
-    if [ ! -d /data/data/com.qualcomm.adrenotest ]; then
-        pm install /data/prebuilt/AdrenoTest.apk
-    fi
+# Activate SuperUser Daemon if existing
+if [ -e /system/xbin/daemonsu ]; then
+    /system/xbin/daemonsu --auto-daemon
 fi
 
 # Change adj level and min_free_kbytes setting for lowmemory killer to kick in
